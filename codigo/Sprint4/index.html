@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!-- === === -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logia - Login e Cadastro</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../img/LogiaAlt4.png" />
+    <!-- ===== Iconscout CSS ===== -->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="./login.css" />
+
+    <!-- ===== Mask ===== -->
+    <script src="../vanilla-masker-master/build/vanilla-masker.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="forms">
+        <div class="form login">
+          <span class="title">Entrar</span>
+          <img src="../img/LogiaAlt5.png" class="logo" />
+          <form class="vEntrar" method="post">
+            <div class="input-field">
+              <input
+                type="text"
+                id="logEmail"
+                placeholder="Digite seu email"
+                required
+              />
+              <i class="uil uil-envelope icon"></i>
+            </div>
+            <div class="input-field">
+              <input
+                type="password"
+                id="logPwd"
+                class="password"
+                placeholder="Digite sua senha"
+                required
+              />
+              <i class="uil uil-lock icon"></i>
+              <i class="uil uil-eye-slash showHidePw"></i>
+            </div>
+
+            <div class="checkbox-text">
+              <div class="checkbox-content"></div>
+            </div>
+
+            <div class="input-field button">
+              <input id="button" type="submit" value="Entrar!" />
+            </div>
+          </form>
+
+          <div class="login-signup">
+            <span class="text"
+              >Não tem conta?
+              <a href="#" class="text signup-link">Crie agora!</a>
+            </span>
+          </div>
+        </div>
+
+        <!-- Registration Form -------------------------------------------------------------------------->
+        <div class="form signup">
+          <span class="title">Criar uma conta</span>
+          <img src="../img/LogiaAlt5.png" class="logo" />
+          <form class="cadastro" onload="test()" method="post">
+            <select
+              class="input-field"
+              id="inputOcupacao"
+              name="ocupacao"
+              required
+            >
+              <option value="">Escolha como vai criar sua conta</option>
+              <option value="profissional">
+                Sou um Profissional da Psicologia
+              </option>
+              <option value="paciente">Sou um Paciente</option>
+              <option value="estudante">Sou um Estudante de Psicologia</option>
+            </select>
+
+            <div class="input-field">
+              <input
+                id="inputName"
+                type="text"
+                placeholder="Digite seu nome completo"
+                required
+              />
+              <i class="uil uil-user"></i>
+            </div>
+
+            <div class="input-field">
+              <input
+                id="inputEmail"
+                type="text"
+                placeholder="Digite seu email"
+                required
+              />
+              <i class="uil uil-envelope icon"></i>
+            </div>
+
+            <div class="input-field">
+              <label></label>
+              <input id="inputDate" type="date" placeholder="" required />
+              <i class="uil uil-calendar-alt icon"></i>
+            </div>
+
+            <div class="input-field">
+              <input
+                id="inputCelNumber"
+                attrname="telephone1"
+                type="text"
+                placeholder="Digite seu numero de celular"
+                required
+              />
+              <i class="uil-mobile-android"></i>
+            </div>
+
+            <div class="input-field">
+              <input
+                id="inputCPF"
+                type="text"
+                placeholder="Digite seu CPF"
+                required
+              />
+              <i class="uil-user-square"></i>
+            </div>
+
+            <div class="input-field">
+              <input
+                type="password"
+                id="inputPwd"
+                class="password"
+                placeholder="Digite uma senha"
+                required
+              />
+              <i class="uil uil-lock icon"></i>
+              <i class="uil uil-eye-slash showHidePw"></i>
+            </div>
+
+            <div class="checkbox-text">
+              <div class="checkbox-content">
+                <input type="checkbox" id="sigCheck" required />
+                <label for="sigCheck" class="text"
+                  >Eu li e aceito os Termos e Condições</label
+                >
+              </div>
+            </div>
+
+            <div class="input-field button">
+              <input id="button" type="submit" value="Criar!" />
+            </div>
+          </form>
+
+          <div class="login-signup">
+            <span class="text"
+              >Já tem uma conta?
+              <a href="#" class="text login-link">Entre agora!</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="login.js"></script>
+  </body>
+</html>

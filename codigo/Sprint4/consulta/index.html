@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="index.js"></script>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="index.css" media="screen" />
+  <title>Document</title>
+  <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body onload="init()">
+  <header class="header">
+    <!-- Barra de navegação superior -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <img class="navbar-brand" src="../img/LogiaAlt6.png" width="70px" href="homepage.html" alt="logo">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="../perfil">Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../desabafos">Mural Solidário</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Consulta Rápida</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Sair</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div id="selection">
+    <h3 class="alinhar">Escolha seu psicólogo.</h3>
+    <div class="row">
+      <div class="col-sm-12">
+        <table id="grid-contatos" class="table table-striped">
+          <thead>
+            <tr class="colorWhite">
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Ocupaçao</th>
+            </tr>
+          </thead>
+          <tbody id="table-contatos" class="colorWhite">
+            <tr>
+              <td scope="row">1</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      function exibeContatos() {
+        // Remove todas as linhas do corpo da tabela
+        $('#table-contatos').html('');
+
+        // Popula a tabela com os registros do banco de dados
+        for (i = 0; i < db.length; i++) {
+          let contato = db[i];
+          $('#table-contatos').append(`<tr id="${contato.id}"><td scope="row">${contato.id}</td>
+                                                <td>${contato.name}</td>
+                                                <td>${contato.celnumber}</td>
+                                                <td>${contato.email}</td>
+                                                <td>${contato.ocupacao}</td>
+                                            </tr>`);
+        }
+      }
+      $('#grid-contatos').on('click', 'tr', function (e) {
+        let linhaContato = this;
+        colunas = linhaContato.querySelectorAll('td');
+        var newAppointment = {
+          userId: user[0].id, consultaId: parseInt(colunas[0].innerText), data: data(),
+        }
+        function apenasNumeros(string) {
+          var numsStr = string.replace(/[^0-9]/g, '');
+          return parseInt(numsStr);
+        }
+        
+
+        window.open(`https://api.whatsapp.com/send?phone=${apenasNumeros(colunas[2].innerText)}`, 'janelaNova');
+        historico.data.push(newAppointment);
+        localStorage.setItem('historico', JSON.stringify(historico));
+
+        alert('entrou em contato com: ' + colunas[1].innerText)
+      });
+    </script>
+
+    <script>
+      function init() {
+        exibeContatos();
+        // Adiciona funções para tratar os eventos
+
+        exibeContatos();
+      }
+    </script>
+
+  </div>
+  </div>
+</body>
+
+</html>

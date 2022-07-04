@@ -1,0 +1,270 @@
+.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.perfilContent {
+  margin: 50px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media only screen and (min-width: 1440px) {
+  .perfilContent {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .flexRow {
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+
+
+a {
+  color: #4070f4;
+  padding: 5px;
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+.border {
+  border: 1px solid #1fc0ba;
+  margin: 2px 0px;
+  margin-bottom: 5px;
+  border-radius: 6px;
+}
+.user {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  background-color: white;
+
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+ul {
+  padding: 5px;
+  padding-left: 1px !important;
+}
+.button {
+  margin-top: 35px;
+  width: fit-content;
+}
+ul {
+  counter-reset: item;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-evenly;
+}
+.button input {
+  border: none;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  background-color: #1fc0ba;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 5px;
+}
+
+.button input:hover {
+  background-color: #1b9995;
+}
+
+.padding {
+  padding: 5px;
+}
+
+.active {
+  display: none !important;
+}
+
+/* ===== Google Font Import - Poformsins ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.logo {
+  width: 80px;
+  float: right;
+  margin: 2.5px;
+}
+
+body {
+  height: 100vh;
+
+  background-color: #14cac4 !important;
+}
+
+.container {
+  align-items: center;
+  position: relative;
+  max-width: 430px;
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container .forms {
+  display: flex;
+  align-items: center;
+
+  width: 200%;
+  transition: height 0.2s ease;
+}
+
+.container .form {
+  width: 50%;
+  padding: 30px;
+  background-color: #fff;
+  transition: margin-left 0.18s ease;
+}
+
+.container .form .title {
+  position: relative;
+  font-size: 27px;
+  font-weight: 600;
+}
+
+.form .title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  background-color: #1fc0ba;
+  border-radius: 25px;
+}
+
+.form .input-field {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.input-field input {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 0 35px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  border-bottom: 2px solid #ccc;
+  border-top: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid) {
+  border-bottom-color: #1fc0ba;
+}
+
+.input-field i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 23px;
+  transition: all 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid) ~ i {
+  color: #1fc0ba;
+}
+
+.input-field i.icon {
+  left: 0;
+}
+.input-field i.showHidePw {
+  right: 0;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.form .checkbox-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.checkbox-text .checkbox-content {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-content input {
+  margin: 0 8px -2px 4px;
+  accent-color: #000000;
+}
+
+.form .text {
+  color: #333;
+  font-size: 14px;
+}
+
+.form a.text {
+  color: #4070f4;
+  text-decoration: none;
+}
+.form a:hover {
+  text-decoration: underline;
+}
+
+.form .button {
+  margin-top: 35px;
+}
+
+.form .button input {
+  border: none;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  background-color: #1fc0ba;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button input:hover {
+  background-color: #1b9995;
+}
+
+.form .login-signup {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.input-field select,
+.input-field input[type='date'] {
+  color: #707070;
+}
+.input-field input[type='date']:valid {
+  color: #333;
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "Roberto Henrique da Silva",
+    "email": "roberto@gmail.com",
+    "date": "2022-05-02",
+    "celnumber": "123",
+    "cpf": "321",
+    "pwd": "1234",
+    "ocupacao": "estudante"
+  }
+]
