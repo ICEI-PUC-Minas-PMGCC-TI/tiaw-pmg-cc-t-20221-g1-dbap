@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logia</title>
+    <link rel="stylesheet" href="index.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  </head>
+  <script type="module" src="user.js"></script>
+  <script>
+  
+    var jsonHistorico = JSON.parse(localStorage.getItem('historico'));
+  
+    var loginVariavel = JSON.parse(localStorage.getItem('user'));
+    var jsonUsers = JSON.parse(localStorage.getItem('users'));
+    
+  </script>
+  <body>
+
+      <div class="perfil">
+        <header class="header">
+          <!-- Barra de navegação superior -->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+              <div class="container-fluid">
+                  <img class="navbar-brand" src="../img/LogiaAlt6.png" width="70px" href = "homepage.html" alt="logo">
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#navbarNav" aria-controls="navbarNav"
+                      aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNav">
+                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                          <li class="nav-item">
+                              <a class="nav-link" href="">Perfil</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="../desabafos">Mural Solidário</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="../consulta">Consulta Rápida</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="../index.html">Sair</a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </nav>
+      </header>
+        <script></script>
+        <div class="perfilContent">
+          <div class="flexRow">
+            <div class="flex">
+              <h4>Usuario</h4>
+              <ul id="User" class="border user"></ul>
+            </div>
+            <script>
+              function search(key, inputArray) {
+                for (let i = 0; i < inputArray.length; i++) {
+                  if (inputArray[i].id === key) {
+                    return inputArray[i];
+                  }
+                }
+              }
+              let resultObject = search(loginVariavel.id, jsonUsers.data);
+
+              let listaDoUser = document.querySelector('#User');
+              var keys = Object.keys(resultObject);
+              keys.splice(keys.indexOf('id'), 1);
+              keys.splice(keys.indexOf('pwd'), 1);
+              for (var i = 0; i < keys.length; i++) {
+                let item = document.createElement('li');
+                item.innerText = keys[i] + ':' + resultObject[keys[i]];
+                listaDoUser.appendChild(item);
+              }
+            </script>
+            <div class="flex">
+              <h4>Editar Perfil</h4>
+              <div class="input-field button border">
+                <a href="#" class="editPerfil"> editar perfil</a>
+              </div>
+            </div>
+          </div>
+        
+          <div class="flex">
+            <h4>Historico</h4>
+            <ul id="historico" class="border user"></ul>
+          </div>
+          <script>
+            function searchPaciente(key, inputArray) {
+              for (let i = 0; i < inputArray.length; i++) {
+                if (inputArray[i].id === key) {
+                  return inputArray[i];
+                }
+              }
+            }
+            var rh = jsonHistorico.data.filter((item)=> {
+              return (item.userId === loginVariavel.id || loginVariavel.id === item.consultaId)
+            })
+            let historico = document.querySelector('#historico');
+            for (var i = 0; i < rh.length; i++) {
+              let item = document.createElement('li');
+              var nameConsulta = '';
+              if(loginVariavel.id === rh[i].userId){
+                nameConsulta= jsonUsers.data[rh[i].consultaId -1].name;
+              } else {
+                nameConsulta= jsonUsers.data[rh[i].userId -1].name;
+              }
+              item.innerText =
+              nameConsulta + ' -  Data do contato: ' +
+                rh[i].data;
+              item.className = 'border padding';
+              historico.appendChild(item);
+            }
+          </script>
+        </div>
+      </div>
+      <div class="container">
+        <div class="forms active">
+          <div class="form signup active">
+            <span class="title">Editar Conta</span>
+            <img src="./LogiaAlt5.png" class="logo" />
+            <form class="cadastro" onload="test()" method="post">
+              <select class="input-field" id="inputOcupacao" name="ocupacao">
+                <option value="profissional">
+                  Escolha como vai editar sua conta
+                </option>
+                <option value="profissional">
+                  Sou um Profissional da Psicologia
+                </option>
+                <option value="paciente">Sou um Paciente</option>
+                <option value="estudante">
+                  Sou um Estudante de Psicologia
+                </option>
+              </select>
+
+              <div class="input-field">
+                <input
+                  id="inputName"
+                  type="text"
+                  placeholder="Digite seu nome completo"
+                />
+                <i class="uil uil-user"></i>
+              </div>
+
+              <div class="input-field">
+                <input
+                  id="inputEmail"
+                  type="text"
+                  placeholder="Digite seu email"
+                />
+                <i class="uil uil-envelope icon"></i>
+              </div>
+
+              <div class="input-field">
+                <label></label>
+                <input id="inputDate" type="date" placeholder="" />
+                <i class="uil uil-calendar-alt icon"></i>
+              </div>
+
+              <div class="input-field">
+                <input
+                  id="inputCelNumber"
+                  type="number"
+                  placeholder="Digite seu numero de celular"
+                />
+                <i class="uil-mobile-android"></i>
+              </div>
+
+              <div class="input-field">
+                <input
+                  id="inputCPF"
+                  type="number"
+                  placeholder="Digite seu CPF"
+                />
+                <i class="uil-user-square"></i>
+              </div>
+
+              <div class="input-field">
+                <input
+                  type="password"
+                  id="inputPwd"
+                  class="password"
+                  placeholder="Digite uma senha"
+                />
+                <i class="uil uil-lock icon"></i>
+                <i class="uil uil-eye-slash showHidePw"></i>
+              </div>
+
+              <div class="input-field button">
+                <input id="button" type="submit" value="Alterar!" />
+              </div>
+            </form>
+
+            <div class="login-signup">
+              <span class="text">
+                <a href="#" class="text login-link">cancelar</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    document
+      .querySelector('form.cadastro')
+      .addEventListener('submit', function (e) {
+        e.preventDefault();
+        let name = document.getElementById('inputName').value
+          ? document.getElementById('inputName').value
+          : resultObject.name;
+        let email = document.getElementById('inputEmail').value
+          ? document.getElementById('inputEmail').value
+          : resultObject.email;
+        let date = document.getElementById('inputDate').value
+          ? document.getElementById('inputDate').value
+          : resultObject.date;
+        let celnumber = document.getElementById('inputCelNumber').value
+          ? document.getElementById('inputCelNumber').value
+          : resultObject.celnumber;
+        let cpf = document.getElementById('inputCPF').value
+          ? document.getElementById('inputCPF').value
+          : resultObject.cpf;
+        let pwd = document.getElementById('inputPwd').value
+          ? (pwd = document.getElementById('inputPwd').value)
+          : resultObject.pwd;
+        let ocupacao = document.getElementById('inputOcupacao').value;
+        let id = loginVariavel.id;
+        var usuario = {
+          id: id,
+          name: name,
+          email: email,
+          date: date,
+          celnumber: celnumber,
+          cpf: cpf,
+          pwd: pwd,
+          ocupacao: ocupacao,
+        };
+        function search(key, inputArray) {
+          for (let i = 0; i < inputArray.length; i++) {
+            if (inputArray[i].id === key) {
+              return (jsonUsers.data[i] = usuario);
+            }
+          }
+        }
+        search(id, jsonUsers.data);
+      });
+
+    const editPerfil = document.querySelector('.editPerfil');
+    const container = document.querySelector('.perfil');
+    const container2 = document.querySelector('.signup');
+    const loginLink = document.querySelector('.login-link');
+    const forms = document.querySelector('.forms');
+    editPerfil.addEventListener('click', () => {
+      container.classList.add('active');
+      forms.classList.remove('active');
+      container2.classList.remove('active');
+    });
+    loginLink.addEventListener('click', () => {
+      container.classList.remove('active');
+      forms.classList.add('active');
+      container2.classList.add('active');
+    });
+  </script>
+</html>
